@@ -1,0 +1,33 @@
+# Conda environment configuration file
+# To create the environment, run: conda env create -f environment.yml
+# To activate the environment, run: conda activate bedrock_env
+
+name: bedrock_env
+
+channels:
+  - conda-forge
+  - pytorch # Add pytorch channel for faiss
+
+dependencies:
+  - python=3.11
+  - pip
+  - pip:
+    - boto3
+    - langchain
+    - langchain-community
+    - streamlit
+    - flask-sqlalchemy
+    - pypdf
+    # Note: The 'bedrock' service is accessed via the 'boto3' library.
+    # The 'langchain' library includes specific modules for Amazon Bedrock
+    # that use 'boto3' to communicate with the AWS API. There is no separate
+    # 'pip install bedrock' needed for this integration.
+    # The official package for Bedrock agents is 'bedrock-agent-python'.
+    # If you need that specific functionality, you can add it here.
+    # - bedrock-agent-python
+
+    # FAISS installation: Uncomment the line that matches your system
+    # Use faiss-cpu for systems without a CUDA-enabled GPU
+    - faiss-cpu
+    # Use faiss-gpu for systems with a CUDA-enabled GPU
+    # - faiss-gpu
